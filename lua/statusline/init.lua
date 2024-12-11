@@ -48,7 +48,7 @@ function M.setup(user_config)
   filename.setup(config.filename)
   separator.setup(config.separator)
 
-  vim.o.statusline = '%!v:lua.require("pita.statusline").set_statusline()'
+  vim.o.statusline = '%!v:lua.require("statusline").set_statusline()'
 end
 
 function M.set_statusline()
