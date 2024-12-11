@@ -4,6 +4,8 @@ local words = require("components.words")
 local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
+vim.api.nvim_set_hl(0, 'bg', { fg = "#1d2021"})
+vim.api.nvim_set_hl(0, 'fg', { fg = "#fbf1c7", "#32302f"})
 
 local function a(x)
   return string.rep(" ", x)
@@ -53,7 +55,7 @@ end
 
 function M.set_statusline()
   local components = {
-    '%#StatusLine_2#',
+    '%#bg#',
     a(config.padding),
   }
 
@@ -61,12 +63,12 @@ function M.set_statusline()
     table.insert(components, mode.mode_indicator(config.mode))
   end
 
-  table.insert(components, '%#StatusLine_1# ')
+  table.insert(components, '%#fg# ')
 
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#StatusLine_1# ')
+    table.insert(components, '%#fg# ')
   end
 
   table.insert(components, '  %c')
@@ -75,7 +77,7 @@ function M.set_statusline()
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_3#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#StatusLine_1# ')
+    table.insert(components, '%#fg# ')
   end
 
   if config.filename.enabled then
@@ -85,23 +87,23 @@ function M.set_statusline()
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_3#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#StatusLine_1# ')
+    table.insert(components, '%#fg# ')
   end
 
   table.insert(components, a(1))
   table.insert(components, '%=')
-  table.insert(components, '%#StatusLine_1#')
+  table.insert(components, '%#fg#')
 
   if config.scroll.enabled then
     table.insert(components, '%#ScrollBar#')
     table.insert(components, scroll.scrollbar_indicator(config.scroll))
-    table.insert(components, '%#StatusLine_1# ')
+    table.insert(components, '%#fg# ')
   end
 
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_3#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#StatusLine_1# ')
+    table.insert(components, '%#fg# ')
   end
 
   table.insert(components, a(1))
@@ -113,7 +115,7 @@ function M.set_statusline()
 
 
   if config.git.enabled then
-    table.insert(components, '%#StatusLine_2#')
+    table.insert(components, '%#bg#')
     table.insert(components, a(2))
     table.insert(components, '%#StatusLine_GitStatus#')
     table.insert(components, a(1))
