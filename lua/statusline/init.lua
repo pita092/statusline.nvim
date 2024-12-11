@@ -6,7 +6,7 @@ local words = require("components.words")
 local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
-vim.api.nvim_set_hl(0, 'StatusLine', { fg = "#fbf1c7", bg = "#32302f" })
+
 
 
 local function a(x)
@@ -70,7 +70,7 @@ function M.set_statusline()
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#StatusLine# ')
+    table.insert(components, '%#StatusLine_Normal# ')
   end
 
   table.insert(components, '  %c')
@@ -79,7 +79,7 @@ function M.set_statusline()
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#StatusLine# ')
+    table.insert(components, '%#StatusLine_Normal# ')
   end
 
   if config.filename.enabled then
@@ -89,12 +89,12 @@ function M.set_statusline()
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#StatusLine# ')
+    table.insert(components, '%#StatusLine_Normal# ')
   end
 
   table.insert(components, a(1))
   table.insert(components, '%=')
-  table.insert(components, '%#StatusLine#')
+  table.insert(components, '%#StatusLine_Normal#')
 
   if config.scroll.enabled then
     table.insert(components, '%#ScrollBar#')
@@ -105,7 +105,7 @@ function M.set_statusline()
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#StatusLine# ')
+    table.insert(components, '%#StatusLine_Normal# ')
   end
 
   table.insert(components, a(1))
