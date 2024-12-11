@@ -65,7 +65,7 @@ function M.set_statusline()
     table.insert(components, mode.mode_indicator(config.mode))
   end
 
-  table.insert(components, '%#Statusline# ')
+  table.insert(components, '%#StatusLine_Normal# ')
 
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
