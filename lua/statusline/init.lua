@@ -16,7 +16,6 @@ end
 local M = {}
 
 local config = {
-  statusline_height = 3,
   padding = 6,
   separator = {
     enabled = true,
