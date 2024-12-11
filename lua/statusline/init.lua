@@ -99,7 +99,7 @@ function M.set_statusline()
   if config.scroll.enabled then
     table.insert(components, '%#ScrollBar#')
     table.insert(components, scroll.scrollbar_indicator(config.scroll))
-    table.insert(components, '%#statusline# ')
+    table.insert(components, '%#StatusLine_Normal# ')
   end
 
   if config.separator.enabled then
