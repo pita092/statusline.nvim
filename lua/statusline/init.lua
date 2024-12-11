@@ -4,7 +4,7 @@ local words = require("components.words")
 local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
-vim.api.nvim_set_hl(0, 'StatusLine_1', { fg = "#32302f", bg = "#fbf1c7", cterm=reverse ,gui=reverse})
+vim.api.nvim_set_hl(0, 'StatusLine_1', { fg = "#fbf1c7", bg = "#32302f"})
 vim.api.nvim_set_hl(0, 'StatusLine_2', { fg = "#1d2021", bg = "#1d2021" })
 vim.api.nvim_set_hl(0, 'StatusLine_3', { bg = "#83a598" })
 
