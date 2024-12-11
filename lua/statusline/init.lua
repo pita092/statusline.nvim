@@ -5,7 +5,7 @@ local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
 vim.api.nvim_set_hl(0, 'bg', { fg = "#1d2021"})
-
+vim.api.nvim_set_hl(0, 'fg', { fg = "#fbf1c7","#32302f"})
 
 local function a(x)
   return string.rep(" ", x)
