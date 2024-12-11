@@ -124,7 +124,7 @@ function M.set_statusline()
   end
 
 
-  table.insert(components, '%#StatusLine_2#')
+  table.insert(components, '%#bg#')
   table.insert(components, a(config.padding - 1))
 
   return table.concat(components, '')
