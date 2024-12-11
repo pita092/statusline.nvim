@@ -1,11 +1,12 @@
+require("components.colors")
+
 local git = require("components.git")
 local scroll = require("components.scrollbar")
 local words = require("components.words")
 local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
-vim.api.nvim_set_hl(0, 'bg', { fg = "#1d2021"})
-vim.api.nvim_set_hl(0, 'fg', { fg = "#32302f", bg = "#fbf1c7"})
+
 
 local function a(x)
   return string.rep(" ", x)
@@ -55,7 +56,7 @@ end
 
 function M.set_statusline()
   local components = {
-    '%#bg#',
+    '%#StatusLine_bg#',
     a(config.padding),
   }
 
@@ -63,21 +64,21 @@ function M.set_statusline()
     table.insert(components, mode.mode_indicator(config.mode))
   end
 
-  table.insert(components, '%#fg# ')
+  table.insert(components, '%#statusline# ')
 
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#fg# ')
+    table.insert(components, '%#statusline# ')
   end
 
   table.insert(components, '  %c')
   table.insert(components, a(2))
 
   if config.separator.enabled then
-    table.insert(components, '%#StatusLine_3#')
+    table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#fg# ')
+    table.insert(components, '%#StatusLine# ')
   end
 
   if config.filename.enabled then
@@ -85,25 +86,25 @@ function M.set_statusline()
   end
 
   if config.separator.enabled then
-    table.insert(components, '%#StatusLine_3#')
+    table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#fg# ')
+    table.insert(components, '%#StatusLine# ')
   end
 
   table.insert(components, a(1))
   table.insert(components, '%=')
-  table.insert(components, '%#fg#')
+  table.insert(components, '%#StatusLine#')
 
   if config.scroll.enabled then
     table.insert(components, '%#ScrollBar#')
     table.insert(components, scroll.scrollbar_indicator(config.scroll))
-    table.insert(components, '%#fg# ')
+    table.insert(components, '%#statusline# ')
   end
 
   if config.separator.enabled then
-    table.insert(components, '%#StatusLine_3#')
+    table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#fg# ')
+    table.insert(components, '%statusline# ')
   end
 
   table.insert(components, a(1))
@@ -115,7 +116,7 @@ function M.set_statusline()
 
 
   if config.git.enabled then
-    table.insert(components, '%#bg#')
+    table.insert(components, '%#StatusLine_bg#')
     table.insert(components, a(2))
     table.insert(components, '%#StatusLine_GitStatus#')
     table.insert(components, a(1))
@@ -124,7 +125,7 @@ function M.set_statusline()
   end
 
 
-  table.insert(components, '%#bg#')
+  table.insert(components, '%#StatusLine_bg#')
   table.insert(components, a(config.padding - 1))
 
   return table.concat(components, '')

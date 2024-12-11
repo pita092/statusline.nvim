@@ -9,18 +9,18 @@ end
 
 function M.mode_indicator()
   local mode_map = {
-    n = { 'NORMAL', 'ModeNormal' },
-    i = { 'INSERT', 'ModeInsert' },
-    v = { 'VISUAL', 'ModeVisual' },
+    n = { 'NORMAL',         'ModeNormal' },
+    i = { 'INSERT',         'ModeInsert' },
+    v = { 'VISUAL',         'ModeVisual' },
     ['\x16'] = { 'V-BLOCK', 'ModeVisual' },
-    V = { 'V-LINE', 'ModeVisual' },
-    c = { 'COMMAND', 'ModeCommand' },
-    R = { 'REPLACE', 'ModeReplace' },
-    ['r'] = { 'REPLACE', 'ModeReplace' },
-    ['r?'] = { 'REPLACE', 'ModeReplace' },
-    ['!'] = { 'SHELL', 'ModeNormal' },
-    ['no'] = { 'PENDING', 'ModeReplace' },
-    t = { 'TERMINAL', 'ModeTerminal' },
+    V = { 'V-LINE',         'ModeVisual' },
+    c = { 'COMMAND',        'ModeCommand' },
+    R = { 'REPLACE',        'ModeReplace' },
+    ['r'] = { 'REPLACE',    'ModeReplace' },
+    ['r?'] = { 'REPLACE',   'ModeReplace' },
+    ['!'] = { 'SHELL',      'ModeNormal' },
+    ['no'] = { 'PENDING',   'ModeReplace' },
+    t = { 'TERMINAL',       'ModeTerminal' },
   }
   local api_mode = vim.api.nvim_get_mode()
   local mode = api_mode.mode
@@ -29,7 +29,7 @@ function M.mode_indicator()
     mode_info = { 'O-PENDING', 'ModeNormal' }
   end
   local current_buf_name = vim.fn.expand("%:t")
-  if current_buf_name ==  "UniqueFloatingCmdLineName" then
+  if current_buf_name == "UniqueFloatingCmdLineName" then
     mode_info = { 'COMMAND', 'ModeCommand' }
   end
 
