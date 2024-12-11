@@ -64,12 +64,12 @@ function M.set_statusline()
     table.insert(components, mode.mode_indicator(config.mode))
   end
 
-  table.insert(components, '%#statusline# ')
+  table.insert(components, '%#Statusline# ')
 
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#statusline# ')
+    table.insert(components, '%#StatusLine# ')
   end
 
   table.insert(components, '  %c')
@@ -104,7 +104,7 @@ function M.set_statusline()
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#statusline# ')
+    table.insert(components, '%#StatusLine# ')
   end
 
   table.insert(components, a(1))
