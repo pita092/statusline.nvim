@@ -115,7 +115,7 @@ function M.set_statusline()
   end
 
 
-  if config.git.enabled then
+  if config.git.enabled and git.in_git_branch then
     table.insert(components, '%#StatusLine_bg#')
     table.insert(components, a(2))
     table.insert(components, '%#StatusLine_GitStatus#')
