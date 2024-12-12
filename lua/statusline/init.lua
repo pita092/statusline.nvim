@@ -6,10 +6,8 @@ local words = require("components.words")
 local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
-local function set_highlights()
   vim.api.nvim_set_hl(0, "StatusLine_Normal", { fg = "#ffffff", bg = "#000000", reverse = false })
   -- Add other highlight group definitions here
-end
 
 
 
