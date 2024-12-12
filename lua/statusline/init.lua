@@ -6,8 +6,10 @@ local words = require("components.words")
 local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
-  vim.api.nvim_set_hl(0, "StatusLine_Normal", { fg = "#ffffff", bg = "#000000", reverse = true })
+local function set_highlights()
+  vim.api.nvim_set_hl(0, "StatusLine_Normal", { fg = "#ffffff", bg = "#000000", reverse = false })
   -- Add other highlight group definitions here
+end
 
 
 
@@ -53,7 +55,7 @@ function M.setup(user_config)
   mode.setup(config.mode) -- Ensure this is called correctly
   filename.setup(config.filename)
   separator.setup(config.separator)
-
+  set_highlights()  -- Add this line
   vim.o.statusline = '%!v:lua.require("statusline").set_statusline()'
 end
 
