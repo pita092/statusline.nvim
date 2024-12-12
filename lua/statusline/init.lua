@@ -72,7 +72,7 @@ function M.set_statusline()
     table.insert(components, '%#StatusLine_Normal# ')
   end
 
-  table.insert(components, '  %c')
+  table.insert(components, '  col: %c')
   table.insert(components, a(2))
 
   if config.separator.enabled then
