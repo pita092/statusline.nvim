@@ -1,4 +1,4 @@
-require("components.colors")
+require("components.gruvbox")
 
 local git = require("components.git")
 local scroll = require("components.scrollbar")
