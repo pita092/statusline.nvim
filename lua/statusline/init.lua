@@ -9,7 +9,6 @@ local separator = require("components.separators")
 
 
 
-
 local function a(x)
   return string.rep(" ", x)
 end
@@ -51,6 +50,7 @@ function M.setup(user_config)
   mode.setup(config.mode) -- Ensure this is called correctly
   filename.setup(config.filename)
   separator.setup(config.separator)
+
   vim.o.statusline = '%!v:lua.require("statusline").set_statusline()'
 end
 
@@ -88,7 +88,7 @@ function M.set_statusline()
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#StatusLine_Normal# ')
+    table.insert(components, '%#Scrollbar# ')
   end
 
   table.insert(components, a(1))
@@ -96,7 +96,7 @@ function M.set_statusline()
   table.insert(components, '%#StatusLine_Normal#')
 
   if config.scroll.enabled then
-    table.insert(components, '%#ScrollBar#')
+    table.insert(components, '%#StatusLine_Normal#')
     table.insert(components, scroll.scrollbar_indicator(config.scroll))
     table.insert(components, '%#StatusLine_Normal# ')
   end
