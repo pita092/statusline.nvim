@@ -88,7 +88,7 @@ function M.set_statusline()
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
     table.insert(components, separator.seps(config.separator))
-    table.insert(components, '%#Scrollbar# ')
+    table.insert(components, '%#StatusLine_Normal# ')
   end
 
   table.insert(components, a(1))
