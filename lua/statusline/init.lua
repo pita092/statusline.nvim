@@ -24,7 +24,7 @@ local config = {
   git = {
     enabled = true,
     icon = "",
-  },
+ },
   scroll = {
     enabled = true,
   },
