@@ -96,7 +96,7 @@ function M.set_statusline()
   table.insert(components, '%#StatusLine_Normal#')
 
   if config.scroll.enabled then
-    table.insert(components, '%#StatusLine_Normal#')
+    table.insert(components, '%#Scrollbar#')
     table.insert(components, scroll.scrollbar_indicator(config.scroll))
     table.insert(components, '%#StatusLine_Normal# ')
   end
