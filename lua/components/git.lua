@@ -121,9 +121,14 @@ function M.find_git_dir(dir_path)
   return git_dir
 end
 
+function M.in_git_repo()
+  return current_git_dir ~= nil and current_git_dir ~= ''
+end
+
+
 -- Function to get the current branch name, with optional user configuration for display purposes.
 function M.get_branch(user_config)
-  if not config.enabled then return "" end
+    if not config.enabled or not M.in_git_repo() then return "" end
 
   -- Merge user configuration for this call (if needed)
   local cfg = vim.tbl_deep_extend("force", config, user_config or {})
