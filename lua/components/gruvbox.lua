@@ -1,4 +1,4 @@
-vim.api.nvim_set_hl(0, 'Scrollbar', { bg = "#32302f", fg = "#665c54" })
+vim.api.nvim_set_hl(0, 'Scrollbar', { fg = "#32302f", bg = "#665c54" })
 vim.api.nvim_set_hl(0, 'StatusLine_bg', {bg = "#1d2021"})
 vim.api.nvim_set_hl(0, 'StatusLine_Normal', { bg = "#32302f", fg = "#fbf1c7"})
 vim.api.nvim_set_hl(0, 'ModeNormal', { bg = "#83a598", fg = "#1d2021" })
