@@ -1,6 +1,6 @@
 local config = require("statusline.config")
 
-require("colors." .. config.coloscheme)
+require("colors." .. config.coloeas)
 
 local git = require("components.git")
 local scroll = require("components.scrollbar")
