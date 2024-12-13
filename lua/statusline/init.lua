@@ -1,5 +1,5 @@
 local config = {
-  colors = "gruvbox";
+  colors = "gruvbox",
   padding = 6,
   separator = {
     enabled = true,
@@ -8,7 +8,7 @@ local config = {
   git = {
     enabled = true,
     icon = "",
- },
+  },
   scroll = {
     enabled = true,
   },
@@ -24,9 +24,6 @@ local config = {
   },
 }
 
-
-require("colors." .. config.colors)
-
 local git = require("components.git")
 local scroll = require("components.scrollbar")
 local words = require("components.words")
@@ -34,33 +31,40 @@ local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
 
-
-
 local function a(x)
   return string.rep(" ", x)
 end
 
 local M = {}
 
+local function load_colors()
+  local ok, _ = pcall(require, "colors." .. config.colors)
+  if not ok then
+    vim.notify("Failed to load color scheme: " .. config.colors, vim.log.levels.WARN)
+  end
+end
 
 function M.setup(user_config)
+  -- Merge user config with default config
   config = vim.tbl_deep_extend("force", config, user_config or {})
 
   -- Pass configurations to individual modules
   git.setup(config.git)
   scroll.setup(config.scroll)
   words.setup(config.words)
-  mode.setup(config.mode) -- Ensure this is called correctly
+  mode.setup(config.mode)
   filename.setup(config.filename)
   separator.setup(config.separator)
 
   vim.o.statusline = '%!v:lua.require("statusline").set_statusline()'
+
+  load_colors()
 end
 
 function M.set_statusline()
   local components = {
     '%#StatusLine_bg#',
-    (config.padding),
+    string.rep(" ", config.padding),
   }
 
   if config.mode.enabled then
@@ -117,7 +121,6 @@ function M.set_statusline()
     table.insert(components, a(1))
   end
 
-
   if config.git.enabled and git.in_git_repo() then
     table.insert(components, '%#StatusLine_bg#')
     table.insert(components, a(2))
@@ -126,7 +129,6 @@ function M.set_statusline()
     table.insert(components, git.get_branch(config.git))
     table.insert(components, a(1))
   end
-
 
   table.insert(components, '%#StatusLine_bg#')
   table.insert(components, a(config.padding - 1))
