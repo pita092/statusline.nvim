@@ -44,7 +44,7 @@ local M = {}
 
 
 function M.setup(user_config)
-  config.config = vim.tbl_deep_extend("force", config, user_config or {})
+  config = vim.tbl_deep_extend("force", config, user_config or {})
 
   -- Pass configurations to individual modules
   git.setup(config.git)
