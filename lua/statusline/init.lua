@@ -1,6 +1,6 @@
 local config = {
   colors = "rosepine",
-  padding = 6,
+  padding = 20,
   separator = {
     enabled = true,
     separator = "",
@@ -47,9 +47,10 @@ function M.setup(user_config)
   config.config = vim.tbl_deep_extend("force", config, user_config or {})
 
   -- Pass configurations to individual modules
+  git.setup(config.git)
   scroll.setup(config.scroll)
   words.setup(config.words)
-  mode.setup(config.mode) -- Ensure this is called correctly
+  mode.setup(config.mode)
   filename.setup(config.filename)
   separator.setup(config.separator)
 
@@ -121,7 +122,7 @@ function M.set_statusline()
     table.insert(components, '%#StatusLine_bg#')
     table.insert(components, a(2))
     table.insert(components, '%#StatusLine_GitStatus#')
-    table.insert(components, config.git.icon)
+    table.insert(components, M.setup)
     table.insert(components, git.get_branch(config.git))
     table.insert(components, a(1))
   end
