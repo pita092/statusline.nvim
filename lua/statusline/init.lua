@@ -1,6 +1,6 @@
 local config = {
-  colors = "rosepine",
-  padding = 23,
+  colors = "gruvbox";
+  padding = 6,
   separator = {
     enabled = true,
     separator = "",
@@ -8,7 +8,7 @@ local config = {
   git = {
     enabled = true,
     icon = "",
-  },
+ },
   scroll = {
     enabled = true,
   },
@@ -50,7 +50,7 @@ function M.setup(user_config)
   git.setup(config.git)
   scroll.setup(config.scroll)
   words.setup(config.words)
-  mode.setup(config.mode)
+  mode.setup(config.mode) -- Ensure this is called correctly
   filename.setup(config.filename)
   separator.setup(config.separator)
 
@@ -122,7 +122,6 @@ function M.set_statusline()
     table.insert(components, '%#StatusLine_bg#')
     table.insert(components, a(2))
     table.insert(components, '%#StatusLine_GitStatus#')
-    table.insert(components, M.setup)
     table.insert(components, git.get_branch(config.git))
     table.insert(components, a(1))
   end
