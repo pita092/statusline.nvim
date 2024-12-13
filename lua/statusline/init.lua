@@ -1,4 +1,4 @@
-local config = require("config")
+local config = require("statusline.config")
 
 require("components." .. config.coloscheme)
 
