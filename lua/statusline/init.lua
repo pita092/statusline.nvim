@@ -20,7 +20,7 @@ local config = {
   },
   filename = {
     enabled = true,
-    path_type = "relative",
+    path_type = "Tail",
   },
 }
 
