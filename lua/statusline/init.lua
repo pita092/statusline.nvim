@@ -1,4 +1,4 @@
-local config = require("config")
+require("config")
 
 require("components." .. config.coloscheme)
 
