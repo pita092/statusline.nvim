@@ -25,7 +25,7 @@ function M.get_filename(a)
   elseif a == "full" or a == "Full" or a == "f" or a == "F" or a == "FULL" then
     filename = vim.fn.expand('%:F')
   else
-    filename = vim.fn.expand('%:f')
+    filename = vim.fn.expand('%:t')
   end
 
   local filetype = vim.bo.filetype
