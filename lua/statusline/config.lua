@@ -1,4 +1,6 @@
-local config = {
+local M = {}
+
+M.config = {
   padding = 6,
   separator = {
     enabled = true,
@@ -22,3 +24,5 @@ local config = {
     path_type = "relative",
   },
 }
+
+return M
