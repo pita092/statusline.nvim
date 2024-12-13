@@ -1,5 +1,5 @@
 local config = {
-  colors = "gruvbox";
+  colors = "rosepine";
   padding = 6,
   separator = {
     enabled = true,
