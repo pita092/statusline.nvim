@@ -142,9 +142,6 @@
 --
 -- return M
 
-
-local lualine = require('lualine')
-
 local config = {
   colors = "gruvbox",
   padding = 6,
@@ -178,6 +175,10 @@ local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
 
+local function a(x)
+  return string.rep(" ", x)
+end
+
 local M = {}
 
 local function load_colors()
@@ -187,56 +188,16 @@ local function load_colors()
   end
 end
 
-local function setup_lualine()
-  lualine.setup({
-    options = {
-      theme = config.colors,
-      component_separators = config.separator.enabled and config.separator.separator or "",
-      section_separators = config.separator.enabled and config.separator.separator or "",
-      globalstatus = true,
-    },
-    sections = {
-      lualine_a = {
-        {
-          function() return mode.mode_indicator(config.mode) end,
-          padding = { left = config.padding, right = 1 }
-        },
-      },
-      lualine_b = {
-        {
-          function() return git.get_branch(config.git) end,
-          icon = config.git.icon,
-          cond = git.in_git_repo
-        },
-      },
-      lualine_c = {
-        {
-          function() return filename.custom_filename(config.filename) end
-        },
-      },
-      lualine_x = {
-        {
-          function() return words.word_count(config.words) end
-        },
-      },
-      lualine_y = {
-        {
-          function() return scroll.scrollbar_indicator(config.scroll) end
-        },
-      },
-      lualine_z = {
-        { 'location', padding = { right = config.padding - 1 } },
-      },
-    },
-    inactive_sections = {
-      lualine_a = {},
-      lualine_b = {},
-      lualine_c = { { function() return filename.custom_filename(config.filename) end } },
-      lualine_x = {},
-      lualine_y = {},
-      lualine_z = {},
-    },
-  })
+local function get_section(section_components)
+  local components = {}
+  for _, component in ipairs(section_components) do
+    if type(component) == "function" then
+      table.insert(components, component())
+    else
+      table.insert(components, component)
+    end
+  end
+  return table.concat(components, '')
 end
 
 function M.setup(user_config)
@@ -254,8 +215,54 @@ function M.setup(user_config)
   filename.setup(config.filename)
   separator.setup(config.separator)
 
+  vim.o.statusline = '%!v:lua.require("statusline").set_statusline()'
+
   load_colors()
-  setup_lualine()
+end
+
+function M.set_statusline()
+  local sections = {
+    a = {
+      '%#StatusLine_bg#',
+      a(config.padding),
+      function() return config.mode.enabled and mode.mode_indicator(config.mode) or '' end,
+      '%#StatusLine_Normal# ',
+    },
+    b = {
+      function() return config.git.enabled and git.in_git_repo() and git.get_branch(config.git) or '' end,
+    },
+    c = {
+      function() return config.filename.enabled and filename.custom_filename(config.filename) or '' end,
+    },
+    x = {
+      function() return config.words.enabled and words.word_count(config.words) or '' end,
+    },
+    y = {
+      function() return config.scroll.enabled and scroll.scrollbar_indicator(config.scroll) or '' end,
+    },
+    z = {
+      '%#StatusLine_Column#col:%c%#StatusLine_Normal#',
+      a(2),
+      '%#StatusLine_bg#',
+      a(config.padding - 1),
+    },
+  }
+
+  local components = {
+    get_section(sections.a),
+    config.separator.enabled and separator.seps(config.separator) or '',
+    get_section(sections.b),
+    config.separator.enabled and separator.seps(config.separator) or '',
+    get_section(sections.c),
+    '%=',  -- This will push the following components to the right
+    get_section(sections.x),
+    config.separator.enabled and separator.seps(config.separator) or '',
+    get_section(sections.y),
+    config.separator.enabled and separator.seps(config.separator) or '',
+    get_section(sections.z),
+  }
+
+  return table.concat(components, '')
 end
 
 git.init_git_branch()
