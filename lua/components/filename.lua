@@ -18,11 +18,11 @@ function M.get_filename(a)
   local filename
 
   -- Get the filename based on the configured path type
-    if a == "relative" or "Relative" or "R" or "RELATIVE " then
+    if a == "relative" or a == "Relative" or a == "R" or a == "RELATIVE " then
     filename = vim.fn.expand('%:f')
-  elseif a == "tail" or "Tail" or "T" or "TAIL" then
+  elseif a == "tail" or a == "Tail" or a == "T" or a == "TAIL" then
     filename = vim.fn.expand('%:t')
-  elseif a == "full" or "Full" or "f" or "F" or "FULL" then
+  elseif a == "full" or a == "Full" or a == "f" or a == "F" or a == "FULL" then
     filename = vim.fn.expand('%:F')
   else
     filename = vim.fn.expand('%:f')
