@@ -1,6 +1,6 @@
 local config = {
   colors = "rosepine",
-  padding = 20,
+  padding = 23,
   separator = {
     enabled = true,
     separator = "",
