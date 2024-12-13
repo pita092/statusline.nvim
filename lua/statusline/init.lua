@@ -60,7 +60,7 @@ end
 function M.set_statusline()
   local components = {
     '%#StatusLine_bg#',
-    aconfig.padding),
+    (config.padding),
   }
 
   if config.mode.enabled then
