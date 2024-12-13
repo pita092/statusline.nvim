@@ -1,5 +1,6 @@
 vim.api.nvim_set_hl(0, 'Scrollbar', { fg = "#1f1d2e", bg = "#21202e" })
-vim.api.nvim_set_hl(0, 'StatusLine_bg', {bg = "#191724"})
+-- vim.api.nvim_set_hl(0, 'StatusLine_bg', {bg = "#191724"})
+vim.api.nvim_set_hl(0, 'StatusLine_bg', {link = "Normal"})
 vim.api.nvim_set_hl(0, 'StatusLine_Normal', { bg = "#1f1d2e", fg = "#575279"})
 vim.api.nvim_set_hl(0, 'ModeNormal', { bg = "#9ccfd8", fg = "#191724" })
 vim.api.nvim_set_hl(0, 'ModeInsert', { bg = "#b0aa20", fg = "#191724" })
