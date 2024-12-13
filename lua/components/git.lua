@@ -131,7 +131,7 @@ function M.get_branch(user_config)
     if not config.enabled or not M.in_git_repo() then return "" end
 
   -- Merge user configuration for this call (if needed)
-  local cfg = vim.tbl_deep_extend("force", user_config or {})
+  local cfg = vim.tbl_deep_extend("force", user_config, user_config or {})
 
   -- Update the Git directory based on the actual buffer being used.
   if vim.g.actual_curbuf ~= nil and active_bufnr ~= vim.g.actual_curbuf then
