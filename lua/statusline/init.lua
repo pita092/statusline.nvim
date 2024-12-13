@@ -25,7 +25,7 @@ local config = {
 }
 
 
-require("colors." .. config.colors)
+require("colors." .. config.config.colors)
 
 local git = require("components.git")
 local scroll = require("components.scrollbar")
@@ -60,7 +60,7 @@ end
 function M.set_statusline()
   local components = {
     '%#StatusLine_bg#',
-    a(config.padding),
+    a(config.config.padding),
   }
 
   if config.mode.enabled then
@@ -129,7 +129,7 @@ function M.set_statusline()
 
 
   table.insert(components, '%#StatusLine_bg#')
-  table.insert(components, a(config.padding - 1))
+  table.insert(components, a(config.config.padding - 1))
 
   return table.concat(components, '')
 end
