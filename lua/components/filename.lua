@@ -47,7 +47,7 @@ end
 
 -- Function to return a custom filename for statusline with LuaEval for dynamic updates.
 function M.custom_filename(path_type)
-  return [[ %{luaeval("require('components.filename').get_filename(path_type)")} ]]
+  return [[ %{luaeval("require('components.filename').get_filename( ]] .. path_type .. ')")}'
 end
 
 return M
