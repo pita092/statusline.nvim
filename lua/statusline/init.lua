@@ -45,8 +45,11 @@ local function load_colors()
 end
 
 function M.setup(user_config)
+  -- Check if user_config.config exists and use it, otherwise use user_config directly
+  local new_config = user_config.config or user_config
+
   -- Merge user config with default config
-  config = vim.tbl_deep_extend("force", config, user_config or {})
+  config = vim.tbl_deep_extend("force", config, new_config or {})
 
   -- Pass configurations to individual modules
   git.setup(config.git)
