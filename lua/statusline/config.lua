@@ -1,6 +1,7 @@
 local M = {}
 
 M.config = {
+  colors = "gruvbox";
   padding = 6,
   separator = {
     enabled = true,
