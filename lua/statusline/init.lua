@@ -47,7 +47,6 @@ function M.setup(user_config)
   config.config = vim.tbl_deep_extend("force", config, user_config or {})
 
   -- Pass configurations to individual modules
-  git.setup(config.git)
   scroll.setup(config.scroll)
   words.setup(config.words)
   mode.setup(config.mode) -- Ensure this is called correctly
