@@ -12,17 +12,17 @@ function M.setup(user_config)
 end
 
 -- Function to get the filename based on the configured path type
-function M.get_filename()
+function M.get_filename(a)
   if not config.enabled then return '' end
 
   local filename
 
   -- Get the filename based on the configured path type
-    if config.path_type == "relative" or "Relative" or "R" or "RELATIVE " then
+    if a == "relative" or "Relative" or "R" or "RELATIVE " then
     filename = vim.fn.expand('%:f')
-  elseif config.path_type == "tail" or "Tail" or "T" or "TAIL" then
+  elseif a == "tail" or "Tail" or "T" or "TAIL" then
     filename = vim.fn.expand('%:t')
-  elseif config.path_type == "full" or "Full" or "f" or "F" or "FULL" then
+  elseif a == "full" or "Full" or "f" or "F" or "FULL" then
     filename = vim.fn.expand('%:F')
   else
     filename = vim.fn.expand('%:f')
@@ -46,8 +46,8 @@ function M.get_filename()
 end
 
 -- Function to return a custom filename for statusline with LuaEval for dynamic updates.
-function M.custom_filename()
-  return [[ %{luaeval("require('components.filename').get_filename()")} ]]
+function M.custom_filename(path_type)
+  return [[ %{luaeval("require('components.filename').get_filename(path_type)")} ]]
 end
 
 return M
