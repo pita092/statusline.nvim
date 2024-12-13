@@ -1,4 +1,6 @@
-require("components.gruvbox")
+local config = require("config")
+
+require("components." .. config.coloscheme)
 
 local git = require("components.git")
 local scroll = require("components.scrollbar")
@@ -15,30 +17,6 @@ end
 
 local M = {}
 
-local config = {
-  padding = 6,
-  separator = {
-    enabled = true,
-    separator = "",
-  },
-  git = {
-    enabled = true,
-    icon = "",
- },
-  scroll = {
-    enabled = true,
-  },
-  words = {
-    enabled = true,
-  },
-  mode = {
-    enabled = true,
-  },
-  filename = {
-    enabled = true,
-    path_type = "relative",
-  },
-}
 
 function M.setup(user_config)
   config = vim.tbl_deep_extend("force", config, user_config or {})
