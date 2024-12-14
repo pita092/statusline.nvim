@@ -27,6 +27,11 @@ local config = {
   },
 }
 
+local function sexplore_statusline()
+  return '%#StatusLine_bg#%F'
+end
+
+
 local git = require("components.git")
 local scroll = require("components.scrollbar")
 local words = require("components.words")
@@ -48,10 +53,16 @@ local function load_colors()
 end
 
 function M.setup(user_config)
+  vim.cmd([[
+    augroup CustomStatusline
+      autocmd!
+      autocmd FileType netrw setlocal statusline=%!v:lua.require('statusline').set_statusline()
+    augroup END
+  ]])
+
   -- Check if user_config.config exists and use it, otherwise use user_config directly
   local new_config = user_config.config or user_config
 
-  -- Merge user config with default config
   config = vim.tbl_deep_extend("force", config, new_config or {})
 
   -- Pass configurations to individual modules
@@ -68,6 +79,9 @@ function M.setup(user_config)
 end
 
 function M.set_statusline()
+   if vim.bo.filetype == 'netrw' then
+    return sexplore_statusline()
+  end
   local components = {
     '%#StatusLine_bg#',
     string.rep(" ", config.padding),
