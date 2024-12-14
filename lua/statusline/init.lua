@@ -27,11 +27,6 @@ local config = {
   },
 }
 
-local function sexplore_statusline()
-  return '%#StatusLine_bg#%F'
-end
-
-
 local git = require("components.git")
 local scroll = require("components.scrollbar")
 local words = require("components.words")
@@ -53,16 +48,10 @@ local function load_colors()
 end
 
 function M.setup(user_config)
-  vim.cmd([[
-    augroup CustomStatusline
-      autocmd!
-      autocmd FileType netrw setlocal statusline=%!v:lua.require('statusline').set_statusline()
-    augroup END
-  ]])
-
   -- Check if user_config.config exists and use it, otherwise use user_config directly
   local new_config = user_config.config or user_config
 
+  -- Merge user config with default config
   config = vim.tbl_deep_extend("force", config, new_config or {})
 
   -- Pass configurations to individual modules
@@ -73,15 +62,20 @@ function M.setup(user_config)
   filename.setup(config.filename)
   separator.setup(config.separator)
 
+    vim.cmd([[
+    augroup CustomStatusline
+      autocmd!
+      autocmd FileType netrw setlocal statusline=%!v:lua.require('statusline').sexplore_statusline()
+    augroup END
+  ]])
+
+
   vim.o.statusline = '%!v:lua.require("statusline").set_statusline()'
 
   load_colors()
 end
 
 function M.set_statusline()
-   if vim.bo.filetype == 'netrw' then
-    return sexplore_statusline()
-  end
   local components = {
     '%#StatusLine_bg#',
     string.rep(" ", config.padding),
@@ -153,6 +147,23 @@ function M.set_statusline()
 
   table.insert(components, '%#StatusLine_bg#')
   table.insert(components, a(config.padding - 1))
+
+  return table.concat(components, '')
+end
+
+function M.sexplore_statusline()
+  local components = {
+    '%#StatusLine_bg#',
+    string.rep(" ", config.padding),
+    '%#StatusLine_Normal#',
+    'Sexplore: ',
+    '%#StatusLine_Filename#',
+    '%F',  -- Full path
+    '%#StatusLine_Normal#',
+    '%=',  -- Right align
+    '%#StatusLine_bg#',
+    string.rep(" ", config.padding),
+  }
 
   return table.concat(components, '')
 end
