@@ -154,18 +154,36 @@ function M.get_branch(user_config)
 end
 
 M.git = function()
-  if not vim.b[M.stbufnr()].gitsigns_head or vim.b[M.stbufnr()].gitsigns_git_status then
+  if not M.in_git_repo() then
     return ""
   end
 
-  local git_status = vim.b[M.stbufnr()].gitsigns_status_dict
+  local branch = M.get_branch({ icon = "" })
+  if branch == "" then
+    return ""
+  end
 
-  local added = (git_status.added and git_status.added ~= 0) and ("  " .. git_status.added) or ""
-  local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
-  local removed = (git_status.removed and git_status.removed ~= 0) and ("  " .. git_status.removed) or ""
-  local branch_name = " " .. git_status.head
+  -- Get git status
+  local git_status = vim.fn.system("git status --porcelain")
+  local added, changed, removed = 0, 0, 0
 
-  return " " .. branch_name .. added .. changed .. removed
+  for line in git_status:gmatch("[^\r\n]+") do
+    local status = line:sub(1, 2)
+    if status:match("A") then
+      added = added + 1
+    elseif status:match("M") or status:match("R") then
+      changed = changed + 1
+    elseif status:match("D") then
+      removed = removed + 1
+    end
+  end
+
+  local status_string = ""
+  if added > 0 then status_string = status_string .. "  " .. added end
+  if changed > 0 then status_string = status_string .. "  " .. changed end
+  if removed > 0 then status_string = status_string .. "  " .. removed end
+
+  return " " .. branch .. status_string
 end
 
 
