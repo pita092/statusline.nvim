@@ -1,11 +1,4 @@
 
-local stbufnr = function()
-  return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
-end
-
-local is_activewin = function()
-  return vim.api.nvim_get_current_win() == vim.g.statusline_winid
-end
 
 local current_git_branch = ''
 local current_git_dir = ''
@@ -16,6 +9,14 @@ local file_changed = vim.loop.new_fs_event()
 local git_dir_cache = {}
 
 local M = {}
+
+M.stbufnr = function()
+  return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
+end
+
+M.is_activewin = function()
+  return vim.api.nvim_get_current_win() == vim.g.statusline_winid
+end
 
 -- Configuration table with default values
 local config = {
