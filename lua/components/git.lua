@@ -153,13 +153,23 @@ function M.get_branch(user_config)
   return branch ~= "" and (cfg.icon .. " " .. branch) or ""
 end
 
-M.git = function()
+-- Function to display Git branch
+M.git_branch = function()
   if not M.in_git_repo() then
     return ""
   end
 
   local branch = M.get_branch({ icon = "" })
   if branch == "" then
+    return ""
+  end
+
+  return " " .. branch
+end
+
+-- Function to display Git status (added, modified, removed files)
+M.git_status = function()
+  if not M.in_git_repo() then
     return ""
   end
 
@@ -183,7 +193,7 @@ M.git = function()
   if changed > 0 then status_string = status_string .. "  " .. changed end
   if removed > 0 then status_string = status_string .. "  " .. removed end
 
-  return " " .. branch .. status_string
+  return status_string
 end
 
 

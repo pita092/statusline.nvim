@@ -147,4 +147,3 @@ end
 git.init_git_branch()
 
 return M
-
