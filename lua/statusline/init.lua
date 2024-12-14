@@ -1,6 +1,9 @@
 local config = {
   colors = "gruvbox",
   padding = 6,
+  col = {
+    enabled = true
+  },
   separator = {
     enabled = true,
     separator = "",
@@ -81,9 +84,11 @@ function M.set_statusline()
     table.insert(components, separator.seps(config.separator))
     table.insert(components, '%#StatusLine_Normal# ')
   end
-
+  if config.col then
+  table.insert(components, a(1))
   table.insert(components, '%#StatusLine_Column#col:%c%#StatusLine_Normal#')
   table.insert(components, a(2))
+  end
 
   if config.separator.enabled then
     table.insert(components, '%#StatusLine_Separatror#')
