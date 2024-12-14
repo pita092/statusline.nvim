@@ -153,8 +153,8 @@ end
 
 function M.sexplore_statusline()
   local components = {
+    '%#StatusLine_Normal#',
   }
-
   return table.concat(components)
 end
 
