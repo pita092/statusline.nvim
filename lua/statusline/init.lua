@@ -153,16 +153,10 @@ end
 
 function M.sexplore_statusline()
   local components = {
-    '%#StatusLine_bg#',
-    string.rep(" ", config.padding),
     '%#StatusLine_Normal#',
     'Sexplore: ',
-    '%#StatusLine_Filename#',
     '%F',  -- Full path
-    '%#StatusLine_Normal#',
     '%=',  -- Right align
-    '%#StatusLine_bg#',
-    string.rep(" ", config.padding),
   }
 
   return table.concat(components, '')
