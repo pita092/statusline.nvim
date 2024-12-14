@@ -153,15 +153,13 @@ end
 
 function M.sexplore_statusline()
   local components = {
-    '%#StatusLine_Normal#',
-    "   ",
-    'Sexplore: ',
-    '%f',  -- Full path
+    '%f',
   }
 
-  return table.concat(components, '')
+  return table.concat(components)
 end
 
 git.init_git_branch()
 
 return M
+
