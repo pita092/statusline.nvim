@@ -10,14 +10,6 @@ local git_dir_cache = {}
 
 local M = {}
 
-M.stbufnr = function()
-  return vim.api.nvim_win_get_buf(vim.g.statusline_winid or 0)
-end
-
-M.is_activewin = function()
-  return vim.api.nvim_get_current_win() == vim.g.statusline_winid
-end
-
 -- Configuration table with default values
 local config = {
   enabled = true,
@@ -153,48 +145,6 @@ function M.get_branch(user_config)
   return branch ~= "" and (cfg.icon .. " " .. branch) or ""
 end
 
--- Function to display Git branch
-M.git_branch = function()
-  if not M.in_git_repo() then
-    return ""
-  end
-
-  local branch = M.get_branch({ icon = "" })
-  if branch == "" then
-    return ""
-  end
-
-  return " " .. branch
-end
-
--- Function to display Git status (added, modified, removed files)
-M.git_status = function()
-  if not M.in_git_repo() then
-    return ""
-  end
-
-  -- Get git status
-  local git_status = vim.fn.system("git status --porcelain")
-  local added, changed, removed = 0, 0, 0
-
-  for line in git_status:gmatch("[^\r\n]+") do
-    local status = line:sub(1, 2)
-    if status:match("A") then
-      added = added + 1
-    elseif status:match("M") or status:match("R") then
-      changed = changed + 1
-    elseif status:match("D") then
-      removed = removed + 1
-    end
-  end
-
-  local status_string = ""
-  if added > 0 then status_string = status_string .. "  " .. added end
-  if changed > 0 then status_string = status_string .. "  " .. changed end
-  if removed > 0 then status_string = status_string .. "  " .. removed end
-
-  return status_string
-end
 
 
 
