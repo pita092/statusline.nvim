@@ -153,7 +153,6 @@ end
 
 function M.sexplore_statusline()
   local components = {
-    '%f',
   }
 
   return table.concat(components)
