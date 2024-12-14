@@ -143,6 +143,23 @@ function M.get_branch(user_config)
   return branch ~= "" and (cfg.icon .. " " .. branch) or ""
 end
 
+M.git = function()
+  if not vim.b[M.stbufnr()].gitsigns_head or vim.b[M.stbufnr()].gitsigns_git_status then
+    return ""
+  end
+
+  local git_status = vim.b[M.stbufnr()].gitsigns_status_dict
+
+  local added = (git_status.added and git_status.added ~= 0) and ("  " .. git_status.added) or ""
+  local changed = (git_status.changed and git_status.changed ~= 0) and ("  " .. git_status.changed) or ""
+  local removed = (git_status.removed and git_status.removed ~= 0) and ("  " .. git_status.removed) or ""
+  local branch_name = " " .. git_status.head
+
+  return " " .. branch_name .. added .. changed .. removed
+end
+
+
+
 -- Initialize the Git branch tracking by finding the Git directory.
 function M.init_git_branch()
   M.find_git_dir()
