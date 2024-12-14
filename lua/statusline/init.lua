@@ -155,8 +155,7 @@ function M.sexplore_statusline()
   local components = {
     '%#StatusLine_Normal#',
     'Sexplore: ',
-    '%F',  -- Full path
-    '%=',  -- Right align
+    '%f',  -- Full path
   }
 
   return table.concat(components, '')
