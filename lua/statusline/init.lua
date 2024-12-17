@@ -1,3 +1,6 @@
+
+vim.opt.ls=3
+
 local config = {
   colors = "gruvbox",
   padding = 6,
