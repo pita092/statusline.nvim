@@ -1,4 +1,4 @@
-ltcal config = {
+local config = {
   pos = "down",
   colors = "gruvbox",
   padding = 6,
