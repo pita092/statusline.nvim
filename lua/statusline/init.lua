@@ -35,7 +35,6 @@ local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
 local lsp = require("components.lsp")
-local spin = require("components.spin")
 
 local function a(x)
   return string.rep(" ", x)
@@ -150,7 +149,6 @@ function M.set_statusline()
   table.insert(components, '%#StatusLine_bg#')
   table.insert(components, a(config.padding - 1))
   table.insert(components, lsp.lsp_status())
-  table.insert(components, spin.get_spinner())
 
   return table.concat(components, '')
 end
