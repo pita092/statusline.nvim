@@ -142,8 +142,6 @@ function M.set_statusline()
     table.insert(components, a(2))
     table.insert(components, '%#StatusLine_GitStatus#')
     table.insert(components, git.get_branch(config.git))
-    table.insert(components, "█")
-
     table.insert(components, a(1))
   end
 
@@ -153,6 +151,7 @@ function M.set_statusline()
 
   return table.concat(components, '')
 end
+
 
 git.init_git_branch()
 
