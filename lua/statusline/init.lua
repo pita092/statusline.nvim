@@ -27,7 +27,7 @@ local config = {
     path_type = "Tail",
   },
 }
-require('lsp_status').setup()
+require('components.spin').setup()
 
 local git = require("components.git")
 local scroll = require("components.scrollbar")
