@@ -155,6 +155,7 @@ function M.set_statusline()
   table.insert(components, '%#StatusLine_bg#')
   table.insert(components, a(config.padding - 1))
   table.insert(components, lsp.lsp_status())
+  table.insert(components, lsp.diagnostic_status())
 
   return table.concat(components, '')
 end
