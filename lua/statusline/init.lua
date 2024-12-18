@@ -34,6 +34,7 @@ local words = require("components.words")
 local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
+local lsp = require("components.lsp")
 
 local function a(x)
   return string.rep(" ", x)
@@ -153,6 +154,7 @@ function M.set_statusline()
 
   table.insert(components, '%#StatusLine_bg#')
   table.insert(components, a(config.padding - 1))
+  table.insert(components, lsp.lsp_status())
 
   return table.concat(components, '')
 end
