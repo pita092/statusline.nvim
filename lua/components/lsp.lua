@@ -3,7 +3,7 @@ local M = {}
 function M.lsp_status()
   local clients = vim.lsp.get_active_clients()
   if #clients > 0 then
-    local msgs = vim.lsp.util.get_progress_messages()
+    local msgs = vim.lsp.status()
     if #msgs > 0 then
       return msgs[1].title .. ": " .. msgs[1].message
     else
