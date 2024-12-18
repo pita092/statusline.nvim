@@ -34,7 +34,6 @@ local words = require("components.words")
 local mode = require("components.mode")
 local filename = require("components.filename")
 local separator = require("components.separators")
-local lsp = require("components.lsp")
 
 local function a(x)
   return string.rep(" ", x)
