@@ -73,7 +73,7 @@ function M.setup(user_config)
   ]])
 
 
-  vim.o.statusline = '%!v:lua.require("statusline").set_statusline()'
+  vim.o.winbar = '%!v:lua.require("statusline").set_statusline()'
 
   load_colors()
 end
