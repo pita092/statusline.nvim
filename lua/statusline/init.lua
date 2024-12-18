@@ -1,7 +1,5 @@
-
-vim.opt.ls=3
-
 local config = {
+  pos = "down",
   colors = "gruvbox",
   padding = 6,
   col = {
@@ -72,8 +70,13 @@ function M.setup(user_config)
     augroup END
   ]])
 
-
-  vim.o.winbar = '%!v:lua.require("statusline").set_statusline()'
+if config.pos == "up" then
+    vim.opt.ls=0
+    vim.o.winbar = '%!v:lua.require("statusline").set_statusline()'
+elseif config.pos == "down" then
+    vim.opt.ls=3
+    vim.o.statusline = '%!v:lua.require("statusline").set_statusline()'
+end
 
   load_colors()
 end
