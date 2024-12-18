@@ -161,7 +161,6 @@ end
 
 function M.sexplore_statusline()
   local components = {
-    mode.mode_indicator(),
     '%#StatusLine_bg#',
   }
   return table.concat(components)
