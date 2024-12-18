@@ -1,4 +1,4 @@
-local config = {
+ltcal config = {
   pos = "down",
   colors = "gruvbox",
   padding = 6,
@@ -64,12 +64,6 @@ function M.setup(user_config)
   filename.setup(config.filename)
   separator.setup(config.separator)
 
-    vim.cmd([[
-    augroup CustomStatusline
-      autocmd!
-      autocmd FileType netrw setlocal statusline=%!v:lua.require('statusline').sexplore_statusline()
-    augroup END
-  ]])
 
 if config.pos == "up" then
     vim.opt.ls=0
@@ -159,12 +153,6 @@ function M.set_statusline()
   return table.concat(components, '')
 end
 
-function M.sexplore_statusline()
-  local components = {
-    '%#StatusLine_bg#',
-  }
-  return table.concat(components)
-end
 
 git.init_git_branch()
 
