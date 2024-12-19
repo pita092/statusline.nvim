@@ -12,21 +12,20 @@ function M.setup(user_config)
 end
 
 -- Function to get the filename based on the configured path type
-function M.get_filename(a)
+function M.get_filename()
   if not config.enabled then return '' end
 
   local filename
 
   -- Get the filename based on the configured path type
-    if a == "relative" or a == "Relative" or a == "R" or a == "RELATIVE " then
-    filename = vim.fn.expand('%:f')
-  elseif a == "tail" or a == "Tail" or a == "T" or a == "TAIL" then
+  --   if a == "relative" or a == "Relative" or a == "R" or a == "RELATIVE " then
+  --   filename = vim.fn.expand('%:f')
+  -- elseif a == "tail" or a == "Tail" or a == "T" or a == "TAIL" then
+  --   filename = vim.fn.expand('%:t')
+  -- elseif a == "full" or a == "Full" or a == "f" or a == "F" or a == "FULL" then
+  --   filename = vim.fn.expand('%:F')
+  -- else
     filename = vim.fn.expand('%:t')
-  elseif a == "full" or a == "Full" or a == "f" or a == "F" or a == "FULL" then
-    filename = vim.fn.expand('%:F')
-  else
-    filename = vim.fn.expand('%:t')
-  end
 
   local filetype = vim.bo.filetype
 

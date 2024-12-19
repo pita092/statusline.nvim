@@ -105,7 +105,7 @@ function M.set_statusline()
   end
 
   if config.filename.enabled then
-    table.insert(components, filename.custom_filename(config.filename.path_type))
+    table.insert(components, filename.custom_filename())
   end
 
   if config.separator.enabled then
@@ -156,4 +156,3 @@ end
 git.init_git_branch()
 
 return M
-
