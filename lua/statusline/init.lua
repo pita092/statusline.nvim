@@ -105,7 +105,7 @@ function M.set_statusline()
   end
 
   if config.filename.enabled then
-    table.insert(components, filename.custom_filename())
+    table.insert(components, filename.custom_filename(config.filename.path_type))
   end
 
   if config.separator.enabled then
