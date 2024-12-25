@@ -1,3 +1,10 @@
+local git = require("components.git")
+local scroll = require("components.scrollbar")
+local words = require("components.words")
+local mode = require("components.mode")
+local filename = require("components.filename")
+local separator = require("components.separators")
+
 local config = {
   pos = "down",
   colors = "gruvbox",
@@ -28,12 +35,6 @@ local config = {
   },
 }
 
-local git = require("components.git")
-local scroll = require("components.scrollbar")
-local words = require("components.words")
-local mode = require("components.mode")
-local filename = require("components.filename")
-local separator = require("components.separators")
 
 local function a(x)
   return string.rep(" ", x)
@@ -44,18 +45,15 @@ local M = {}
 local function load_colors()
   local ok, _ = pcall(require, "colors." .. config.colors)
   if not ok then
-    vim.notify("Failed to load color scheme: " .. config.colors, vim.log.levels.WARN)
+    vim.notify("Failed _colors " .. config.colors, vim.log.levels.WARN)
   end
 end
 
 function M.setup(user_config)
-  -- Check if user_config.config exists and use it, otherwise use user_config directly
   local new_config = user_config.config or user_config
 
-  -- Merge user config with default config
   config = vim.tbl_deep_extend("force", config, new_config or {})
 
-  -- Pass configurations to individual modules
   git.setup(config.git)
   scroll.setup(config.scroll)
   words.setup(config.words)
