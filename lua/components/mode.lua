@@ -74,10 +74,6 @@ function M.mode_indicator()
   if api_mode.blocking then
     mode_info = { 'O-PENDING', 'ModeNormal' }
   end
-  local current_buf_name = vim.fn.expand("%:t")
-  if current_buf_name == "UniqueFloatingCmdLineName" then
-    mode_info = { 'COMMAND', 'ModeCommand' }
-  end
 
   return string.format(
     '%%#%s#%s%s%s%%#Normal#',
