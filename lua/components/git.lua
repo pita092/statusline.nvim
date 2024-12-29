@@ -2,6 +2,7 @@
 
 local current_git_branch = ''
 local current_git_dir = ''
+local branch_cache = {}
 local active_bufnr = '0'
 local sep = package.config:sub(1, 1)
 local file_changed = vim.loop.new_fs_event()
@@ -127,15 +128,19 @@ function M.in_git_repo()
 end
 
 
+-- Function to get the current branch name, with optional user configuration for display purposes.
 function M.get_branch(user_config)
     if not config.enabled or not M.in_git_repo() then return "" end
 
+  -- Merge user configuration for this call (if needed)
   local cfg = vim.tbl_deep_extend("force", user_config, user_config or {})
 
+  -- Update the Git directory based on the actual buffer being used.
   if vim.g.actual_curbuf ~= nil and active_bufnr ~= vim.g.actual_curbuf then
     M.find_git_dir()
   end
 
+  -- Get the current branch name and prepend the icon (if configured).
   local branch = current_git_branch
   return branch ~= "" and (cfg.icon .. " " .. branch) or ""
 end
@@ -143,9 +148,11 @@ end
 
 
 
+-- Initialize the Git branch tracking by finding the Git directory.
 function M.init_git_branch()
   M.find_git_dir()
 
+  -- Create an autocommand to find the Git directory when entering a buffer.
   vim.api.nvim_create_autocmd("BufEnter", {
     callback = function()
       M.find_git_dir()
