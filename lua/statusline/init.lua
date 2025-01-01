@@ -39,6 +39,11 @@ local config = {
 local function a(x)
   return string.rep(" ", x)
 end
+local function b(x)
+  if x == 0 then end
+
+  return string.rep(" ", x - 1)
+end
 
 local M = {}
 
@@ -144,7 +149,7 @@ function M.set_statusline()
   end
 
   table.insert(components, '%#StatusLine_bg#')
-  table.insert(components, a(config.padding - 1))
+  table.insert(components, b(config.padding))
   -- table.insert(components, lsp.lsp_status())
 
   return table.concat(components, '')
