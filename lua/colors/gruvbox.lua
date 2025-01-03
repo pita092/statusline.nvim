@@ -12,4 +12,5 @@ vim.api.nvim_set_hl(0, 'StatusLine_Column', { fg = "#fbf1c7", bg = "#32302f" })
 vim.api.nvim_set_hl(0, 'StatusLine_FileName', { bg = "#1d2021", fg = "#a89984" })
 vim.api.nvim_set_hl(0, 'StatusLine_WordChars', { bg = "#1d2021", fg = "#ebdbb2" })
 vim.api.nvim_set_hl(0, 'StatusLine_GitStatus', { bg = "#665c54", fg = "#1d2021" })
-vim.api.nvim_set_hl(0, 'StatusLine_Separatror', { fg = "#83a598" })
+vim.api.nvim_set_hl(0, 'StatusLine_Separatror', { fg = "#83a598", bg = "#32302f" })
+
