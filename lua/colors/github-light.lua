@@ -13,5 +13,3 @@ vim.api.nvim_set_hl(0, 'StatusLine_FileName', { bg = "#ffffff", fg = "#1d2328" }
 vim.api.nvim_set_hl(0, 'StatusLine_WordChars', { bg = "#ffffff", fg = "#1f2328" })
 vim.api.nvim_set_hl(0, 'StatusLine_GitStatus', { bg = "#1d2328", fg = "#ffffff" })
 vim.api.nvim_set_hl(0, 'StatusLine_Separatror', { fg = "#0969da", bg = "#1d2328" })
-
-
