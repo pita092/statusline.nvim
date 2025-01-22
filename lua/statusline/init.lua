@@ -82,7 +82,7 @@ end
 function M.set_statusline()
   local components = {
     '%#StatusLine_bg#',
-    string.rep(" ", config.right_padding),
+    string.rep(" ", config.left_padding),
   }
 
   if config.mode.enabled then
@@ -150,7 +150,7 @@ function M.set_statusline()
   end
 
   table.insert(components, '%#StatusLine_bg#')
-  table.insert(components, b(config.left_padding))
+  table.insert(components, b(config.right_padding))
   -- table.insert(components, lsp.lsp_status())
 
   return table.concat(components, '')
