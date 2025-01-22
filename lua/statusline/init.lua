@@ -8,7 +8,8 @@ local separator = require("components.separators")
 local config = {
   pos = "down",
   colors = "gruvbox",
-  padding = 6,
+  right_padding = 0,
+  left_padding = 0,
   col = {
     enabled = true
   },
@@ -67,13 +68,13 @@ function M.setup(user_config)
   separator.setup(config.separator)
 
 
-if config.pos == "up" then
-    vim.opt.ls=0
+  if config.pos == "up" then
+    vim.opt.ls = 0
     vim.o.winbar = '%!v:lua.require("statusline").set_statusline()'
-elseif config.pos == "down" then
-    vim.opt.ls=3
+  elseif config.pos == "down" then
+    vim.opt.ls = 3
     vim.o.statusline = '%!v:lua.require("statusline").set_statusline()'
-end
+  end
 
   load_colors()
 end
@@ -81,7 +82,7 @@ end
 function M.set_statusline()
   local components = {
     '%#StatusLine_bg#',
-    string.rep(" ", config.padding),
+    string.rep(" ", config.right_padding),
   }
 
   if config.mode.enabled then
@@ -96,9 +97,9 @@ function M.set_statusline()
     table.insert(components, '%#StatusLine_Normal# ')
   end
   if config.col.enabled then
-  table.insert(components, a(1))
-  table.insert(components, '%#StatusLine_Column#col:%c%#StatusLine_Normal#')
-  table.insert(components, a(2))
+    table.insert(components, a(1))
+    table.insert(components, '%#StatusLine_Column#col:%c%#StatusLine_Normal#')
+    table.insert(components, a(2))
   end
 
   if config.separator.enabled then
@@ -149,12 +150,11 @@ function M.set_statusline()
   end
 
   table.insert(components, '%#StatusLine_bg#')
-  table.insert(components, b(config.padding))
+  table.insert(components, b(config.left_padding))
   -- table.insert(components, lsp.lsp_status())
 
   return table.concat(components, '')
 end
-
 
 git.init_git_branch()
 
